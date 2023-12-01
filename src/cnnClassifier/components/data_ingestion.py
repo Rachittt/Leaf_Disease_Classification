@@ -19,6 +19,8 @@ class DataIngestion:
     def download_file(self):
         if not os.path.exists(self.config.local_data_file):
             filename = self.config.local_data_file
+            # opendataset requires kaggle.json file which has username and key to download the file
+            # it can be obtained through kaggle api and then put the downloaded file in root directory of project 
             od.download_kaggle_dataset(dataset_url=self.config.source_URL, data_dir=self.config.local_data_file)
             # od.download(dataset_id_or_url=self.config.source_URL, data_dir=self.config.local_data_file)
             logger.info(f"{filename} downloaded!")
